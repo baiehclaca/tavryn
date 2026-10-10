@@ -1,0 +1,8 @@
+# A permitted local draft; no message is sent.
+needs read "inbox/*.txt"
+needs write "drafts/*.txt"
+
+let message = read("inbox/message.txt")
+let reply = "Draft reply: " + message
+write("drafts/reply.txt", reply)
+say("Saved the draft.")

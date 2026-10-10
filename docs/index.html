@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111d1a">
+  <meta name="description" content="Tavryn is a long-term programming language project for software with explicit, bounded authority. Explore the working interpreter and the path to a stable language.">
+  <title>Tavryn — Code with declared authority</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Tavryn home"><span class="brand-mark" aria-hidden="true">T<span class="brand-dot">.</span></span><span>TAVRYN</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#idea">The idea</a>
+        <a href="#language">The language</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="https://github.com/steamacc063-dot/tavryn">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+      <a class="header-cta" href="https://github.com/steamacc063-dot/tavryn#try-it">Try the interpreter <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="signal" aria-hidden="true"></span> A long-term language project <span class="eyebrow-divider">/</span> experimental implementation available</p>
+          <h1>Code with<br><em>declared authority.</em></h1>
+          <p class="hero-lede">Software is beginning to act for people. Tavryn is being built so a program can say what it needs to do, a host can decide what it may do, and each action has a clear boundary.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/steamacc063-dot/tavryn">Explore on GitHub <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#roadmap">See the path to 1.0 <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Current build: local file capabilities. Production runtime, type system, and compiler are planned.</p>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of a program request and a separate host grant">
+          <div class="visual-top"><span class="visual-id">TAVRYN / AUTHORITY MODEL</span><span class="visual-live"><span></span> EXPLICIT BY DESIGN</span></div>
+          <div class="visual-rail">
+            <div class="visual-node node-program"><span class="node-number">01 / PROGRAM</span><strong>Request</strong><code>needs write "drafts/*.txt"</code></div>
+            <div class="rail-join"><span></span><b>AND</b><span></span></div>
+            <div class="visual-node node-host"><span class="node-number">02 / HOST</span><strong>Grant</strong><code>--grant-write 'drafts/*.txt'</code></div>
+            <div class="rail-flow" aria-hidden="true"><span></span></div>
+            <div class="visual-result"><span class="result-icon" aria-hidden="true">✓</span><div><small>RUNTIME DECISION</small><strong>Action permitted</strong></div><span class="result-arrow" aria-hidden="true">↗</span></div>
+          </div>
+          <div class="visual-bottom"><span>ONE SIDE ALONE IS NEVER ENOUGH</span><span>V0.1 / FILE OPERATIONS</span></div>
+        </div>
+      </div>
+      <div class="shell hero-index" aria-hidden="true"><span>01 / THE PROBLEM</span><span class="hero-index-line"></span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+
+    <section class="section problem" id="idea">
+      <div class="shell">
+        <div class="section-kicker"><span>01</span> THE IDEA</div>
+        <div class="statement-grid"><h2>Powerful software needs<br><span>visible limits.</span></h2><div class="statement-copy"><p>Modern programs can read sensitive data, change records, send messages, and spend money. Those powers are often scattered through code, configuration, and third-party tools.</p><p>Tavryn’s goal is to make authority part of the program contract. Code requests effects. The host grants bounded access. The runtime mediates what actually happens.</p></div></div>
+        <div class="principles">
+          <article><span class="principle-icon" aria-hidden="true">{ }</span><h3>Declare</h3><p>External effects should be visible in source and, eventually, in function signatures.</p></article>
+          <article><span class="principle-icon" aria-hidden="true">⊂</span><h3>Bound</h3><p>A host grants only the resources and actions a program is allowed to use.</p></article>
+          <article><span class="principle-icon" aria-hidden="true">↗</span><h3>Explain</h3><p>Permission decisions should be recorded without copying private content into logs.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section language" id="language">
+      <div class="shell">
+        <div class="section-kicker"><span>02</span> THE LANGUAGE TODAY</div>
+        <div class="language-intro"><h2>Readable intent.<br><span>Separate consent.</span></h2><p>The experimental interpreter supports local file reads and writes. This example creates a draft file; it does not send a message.</p></div>
+        <div class="demo-grid">
+          <div class="code-panel">
+            <div class="panel-top"><span><span class="panel-dot"></span> draft.tav</span><button id="copy-code" type="button" aria-label="Copy Tavryn example">Copy code</button></div>
+            <pre><code id="sample-code"><span class="syntax-muted"># Ask for the paths this program needs</span>
+<span class="syntax-key">needs</span> read <span class="syntax-string">"inbox/*.txt"</span>
+<span class="syntax-key">needs</span> write <span class="syntax-string">"drafts/*.txt"</span>
+
+<span class="syntax-key">let</span> message = read(<span class="syntax-string">"inbox/message.txt"</span>)
+<span class="syntax-key">let</span> reply = <span class="syntax-string">"Draft reply: "</span> + message
+write(<span class="syntax-string">"drafts/reply.txt"</span>, reply)
+say(<span class="syntax-string">"Saved the draft."</span>)</code></pre>
+            <div class="panel-foot">SOURCE DECLARATIONS ≠ HOST PERMISSION</div>
+          </div>
+          <div class="decision-panel">
+            <p class="decision-label">TRY THE PERMISSION MODEL</p>
+            <h3>A program asks.<br>The host decides.</h3>
+            <p>The source requests access to <code>drafts/*.txt</code>. Toggle the independent host grant to see the decision.</p>
+            <button id="grant-toggle" class="grant-toggle" type="button" aria-pressed="false"><span class="toggle-track" aria-hidden="true"><span></span></span><span>Host grants draft writes</span></button>
+            <div id="decision-status" class="decision-status denied" role="status" aria-live="polite"><span class="decision-symbol" aria-hidden="true">×</span><div><small>WRITE drafts/reply.txt</small><strong>Denied</strong><p>No host grant is present.</p></div></div>
+            <p class="model-note">This is an illustration of the current permission rule. Run the interpreter to test actual file operations.</p>
+          </div>
+        </div>
+        <div class="language-links"><a href="https://github.com/steamacc063-dot/tavryn#try-it">Run it locally <span aria-hidden="true">↗</span></a><a href="https://github.com/steamacc063-dot/tavryn/blob/main/ARCHITECTURE.md">Read the architecture <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="section roadmap" id="roadmap">
+      <div class="shell">
+        <div class="section-kicker"><span>03</span> THE LONG VIEW</div>
+        <div class="roadmap-heading"><div><h2>Built to earn<br><span>a 1.0 release.</span></h2></div><p>A language becomes dependable through specification, tooling, independent use, and years of maintenance. Each stage below has a release gate, not just a date.</p></div>
+        <div class="timeline">
+          <article><span class="timeline-year">YEAR 01</span><span class="timeline-marker"></span><div><h3>Define the core</h3><p>Choose one real automation task. Specify functions, types, and effects; build a typed interpreter and conformance suite.</p><small>GATE / Independent developers complete the task safely.</small></div></article>
+          <article><span class="timeline-year">YEAR 02</span><span class="timeline-marker"></span><div><h3>Connect to existing systems</h3><p>Build bounded host APIs, effect-aware modules, interoperability, benchmarks, and external security review.</p><small>GATE / Permissions hold across modules and adapters.</small></div></article>
+          <article><span class="timeline-year">YEAR 03</span><span class="timeline-marker"></span><div><h3>Make it maintainable</h3><p>Deliver packages, reproducible builds, debugger and editor support, migration guides, and compatibility rules.</p><small>GATE / Teams maintain nontrivial services independently.</small></div></article>
+          <article><span class="timeline-year">YEARS 04–05</span><span class="timeline-marker"></span><div><h3>Prove production readiness</h3><p>Test multiple platforms, repeat audits, stabilize semantics, establish governance, and release 1.0 only when the evidence supports it.</p><small>GATE / Third parties can verify and upgrade with confidence.</small></div></article>
+        </div>
+        <a class="roadmap-link" href="https://github.com/steamacc063-dot/tavryn/blob/main/ROADMAP.md">Read the full multi-year roadmap <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section status" id="status">
+      <div class="shell status-grid">
+        <div><div class="section-kicker"><span>04</span> PROJECT STATUS</div><h2>Open work.<br><span>Honest claims.</span></h2></div>
+        <div class="status-content"><p>Tavryn currently has a working interpreter for a small language and a narrow local-file permission model. It does not yet have general-purpose functions, a type system, networking, packages, or a production security audit.</p><p>The name is provisional, and licensing and contributor terms must be settled before an open-source release. The project is public so its direction and limitations can be reviewed.</p><a href="https://github.com/steamacc063-dot/tavryn/blob/main/SECURITY.md">Read the security status <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="closing"><div class="shell closing-inner"><div><p class="eyebrow">THE FIRST STEP IS RUNNABLE</p><h2>Make authority<br>part of the language.</h2></div><a class="button button-light" href="https://github.com/steamacc063-dot/tavryn">View Tavryn on GitHub <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">T<span class="brand-dot">.</span></span><span>TAVRYN</span></a><p>A long-term language project. Current implementation is experimental.</p><div><a href="https://github.com/steamacc063-dot/tavryn">GitHub</a><a href="https://github.com/steamacc063-dot/tavryn/blob/main/ROADMAP.md">Roadmap</a><a href="#top">Back to top ↑</a></div></div></footer>
+  <script src="main.js" defer></script>
+</body>
+</html>
